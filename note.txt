@@ -1,0 +1,183 @@
+video 1
+out of stock 
+
+setting up the environment
+install nodejs
+install mongodb
+install visual studio
+install postman for api call
+install git bash
+set environment variable for node js ,git , mongodb
+
+
+run js in command prompt
+>node
+>exit
+>node --version
+change directory
+>cd
+>ls
+>mkdir
+open current folder/directory in vs code
+>code .
+
+
+git is a version control system
+whenever we create a project, it start with a version.if we create a new feature and save it then we create a new version
+
+
+
+
+
+
+video 2
+initialize the node project 
+>npm init
+>npm install --save express express-validator dotenv mongoose
+install express,express validator for validating incomming request(payloads of the request)
+mongoose is a library that build top of the mongodb(easily create the schema)(mongodb is a schemaless),dotenv for environment variable
+
+create server and crete hello api
+
+index-server.js
+// importing  library
+const express = require('express');
+const env = require('dotenv');
+
+
+const app = express();
+env.config();
+
+
+app.listen(process.env.PORT,()=>{
+    console.log(`server running at port ${process.env.PORT}`)
+})
+
+________________________________________________________________
+calling the api set a response code using res.status
+get is a method which contain 2 paramerer ,path and a function
+200 success
+404 not found
+400,500 for bad request
+
+
+//first api call
+app.get('/',(req,res,next)=>{
+    res.status(200).json({
+        message:"message form server"
+    })
+})
+
+
+we can send payload only through post request
+
+
+install nodemon
+nodemon will check each and every changes in the app and restart the server automaticaly
+install --save-dev nodemon
+
+
+package.json file
+add start script
+ "start":"nodemon ./src/index-server.js"
+
+ >npm start
+
+
+
+ if we did not parsing the data ,we got empty data through res 
+ app.use(express.json())
+         or
+user third party library like body parser 
+npm install body-parser
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+ Express body-parser is an npm library used to process data sent through an HTTP request body. It exposes four express middlewares for parsing text, JSON, url-encoded and raw data set through an HTTP request body. These middlewares are functions that process incoming requests before they reach the target controller
+ app.use(bodyParser.urlencoded({ extended: false }));
+ extended is false means ,nested data in post is absebt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mongo db(mongodb.com)=>sign in =>create a cluster(free)=>choose (aws,mumbai,give clustre name)=>create cluster
+
+network access=>add ip address=>add cureent ip address(only current computer can assess the mongodb)or allow access from anywhere=>confirm
+
+cluster=>connect=>create database user(give username and password)=>create databasee user
+
+choose a connection method=>connect your appication=>coppy the string
+
+mongodb setting
+
+mongoose.connect(process.env.MONGO_DB_URL).then(() => {
+    console.log('Database Connected');
+});
+
+
+create routes folder and import it into index-server.js
+
+const express = require('express');
+const router = express.Router();
+
+module.exports = router;
+
+
+middleware means if we make some request from browser/postman ,backend handling the request ,in between the making and handling the request we want to perform some activity or manipulating the data based on the requirement .for achiving this we write some funtion that function is called middleware
+
+
+app.use('/api',userRoutes)
+const userRoutes = require('./routes/user')
+
+
+
+we can create virtual field in mongoose but we cannot directly  create it in mongodb
+
+
+
+
+
+
+
+
+
+
+
+
+third party library for body parser
+json parser vs body parser 
+which one is better
+
+
+
+
+
+1
